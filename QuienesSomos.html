@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="Logo2.jpg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quienes somos - Yoltlajtoli Radio 96.1 FM</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #2d1b3d; line-height: 1.6; min-height: 100vh;
+        }
+        a:focus-visible, button:focus-visible { outline: 3px solid #ffb300; outline-offset: 2px; }
+
+        /* ENCABEZADO */
+        header { background-color: #ffffff; padding: 0; width: 100%; z-index: 1000; }
+        .logo-container { display: block; width: 100%; margin: 0; padding: 0; line-height: 0; border-bottom: 4px solid #6a1b9a; }
+        .logo-container img { width: 100%; height: auto; display: block; }
+
+        /* BARRA DE NAVEGACIÓN */
+        .barra-navegacion {
+            background-color: #6a1b9a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        nav { padding: 0; background-color: #6a1b9a; display: flex; justify-content: center; gap: 0; flex-wrap: wrap; width: 100%; }
+        nav a {
+            color: #ffffff; text-decoration: none; font-weight: 600; padding: 0.9rem 1.2rem;
+            transition: background 0.3s ease; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 0.5px; border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        nav a:last-child { border-right: none; }
+        nav a:hover { background-color: #4a148c; }
+        nav a.activo { background-color: #4a148c; }
+
+        /* BOTÓN HAMBURGUESA */
+        .btn-hamburguesa {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: background 0.3s ease;
+        }
+        .btn-hamburguesa:hover { background-color: #4a148c; }
+
+        /* LAYOUT */
+        .contenedor-principal {
+            max-width: 1300px; margin: 0 auto; background: #ffffff;
+            display: grid; grid-template-columns: 1fr 300px; gap: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .breadcrumb {
+            background: #ffffff; padding: 1rem 1.5rem; font-size: 0.85rem; color: #666;
+            border-bottom: 1px solid #e0e0e0; grid-column: 1 / -1;
+        }
+        .breadcrumb a { color: #6a1b9a; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .separador { margin: 0 0.5rem; color: #999; }
+
+        /* COLUMNA PRINCIPAL */
+        .columna-principal { padding: 2rem 1.5rem; min-width: 0; }
+        .columna-principal h1.titulo-seccion {
+            color: #4a148c; font-size: 2rem; text-align: center; margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem; font-weight: 700;
+        }
+
+        .contenido-texto { font-size: 1.05rem; line-height: 1.8; color: #3e2a4a; }
+        .contenido-texto p { margin-bottom: 1rem; }
+        .contenido-texto .imagen-pagina { text-align: center; margin: 1.5rem 0; }
+        .contenido-texto .imagen-pagina img {
+            max-width: 100%; border-radius: 12px; border: 3px solid #6a1b9a;
+        }
+
+        /* EQUIPO */
+        .seccion-equipo { margin-top: 2rem; }
+        .seccion-equipo h2 { color: #4a148c; font-size: 1.6rem; text-align: center; margin-bottom: 0.5rem; }
+        .tarjetas-equipo {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem; margin-top: 1rem;
+        }
+        .tarjeta-persona {
+            background: #f8f0fc; border: 2px solid #e1bee7; border-radius: 16px;
+            padding: 1.5rem 1rem; text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .tarjeta-persona:hover { transform: translateY(-4px); border-color: #6a1b9a; }
+        .tarjeta-persona .avatar {
+            width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 0.8rem;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            display: flex; align-items: center; justify-content: center;
+            color: #ffffff; font-size: 1.5rem; font-weight: 700; border: 3px solid #6a1b9a;
+        }
+        .tarjeta-persona h4 { color: #4a148c; margin-bottom: 0.3rem; }
+        .tarjeta-persona p { color: #7b4b8a; font-size: 0.85rem; }
+
+        /* LATERAL */
+        .columna-lateral { background: #f5f5f5; border-left: 1px solid #e0e0e0; }
+        .lateral-header {
+            background: linear-gradient(135deg, #6a1b9a, #4a148c); color: #ffffff;
+            padding: 0.8rem 1.2rem; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+        }
+        .lateral-header .redes-inline { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .icono-social {
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; transition: transform 0.25s ease, filter 0.25s ease;
+            color: #ffffff; font-size: 14px;
+        }
+        .icono-social:hover { transform: scale(1.15); filter: brightness(1.1); }
+        .icono-social.whatsapp { background-color: #25D366; }
+        .icono-social.facebook { background-color: #1877F2; }
+        .icono-social.youtube { background-color: #FF0000; }
+
+        .lateral-caja { background: #ffffff; padding: 1.2rem; border-bottom: 1px solid #e0e0e0; }
+        .lateral-caja h4 { color: #4a148c; font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .lateral-caja .info-contacto { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; line-height: 1.6; }
+        .lateral-caja .info-contacto strong {
+            display: block; color: #6a1b9a; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.15rem;
+        }
+        .lateral-caja .info-contacto a { color: #4a148c; text-decoration: none; font-weight: 600; }
+        .lateral-caja .info-contacto a:hover { text-decoration: underline; }
+        .lateral-facebook { background: #ffffff; padding: 1.2rem; border-bottom: 1px solid #e0e0e0; }
+        .lateral-facebook .fb-page { width: 100% !important; }
+
+        /* BMPLAYER */
+        .bmplayer-container {
+            font-size: 14px; background: #fff; color: #000; position: absolute; padding: 10px;
+            -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+        }
+        .bmplayer-container .bmplayer-container-content { font-size: 16px; overflow: hidden; }
+        .bmplayer-container i { cursor: pointer; }
+        .bmplayer-container i:hover { opacity: 0.8; }
+        .bmplayer-container.bmplayer-style-4 {
+            position: fixed; border-radius: 90px; right: 22px; bottom: 22px; top: auto;
+            width: 100px; height: 100px; overflow: hidden;
+            background: linear-gradient(135deg, #6a1b9a, #4a148c);
+            box-shadow: 0 6px 20px rgba(74, 20, 140, 0.45);
+            z-index: 2000; padding: 10px; transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .bmplayer-container.bmplayer-style-4:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 26px rgba(74, 20, 140, 0.6);
+        }
+        .bmplayer-container.bmplayer-style-4 .bmplayer-container-content { width: 80px; height: 80px; position: relative; }
+        .bmplayer-container.bmplayer-style-4 .bmplayer-controls-primary { position: absolute; top: 20px; left: 25px; }
+        .bmplayer-container.bmplayer-style-4 .bmplayer-controls-primary i {
+            color: #ffb300; font-size: 2.2em; line-height: 1;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .bmplayer-container.bmplayer-style-4 .bmplayer-controls-secondary {
+            position: absolute; bottom: 5px; right: 10px; display: flex; gap: 6px;
+        }
+        .bmplayer-container.bmplayer-style-4 .bmplayer-controls-secondary i { color: #ffffff; font-size: 0.9em; }
+        @media (max-width: 480px) {
+            .bmplayer-container.bmplayer-style-4 { width: 80px; height: 80px; right: 14px; bottom: 14px; }
+            .bmplayer-container.bmplayer-style-4 .bmplayer-container-content { width: 60px; height: 60px; }
+            .bmplayer-container.bmplayer-style-4 .bmplayer-controls-primary { top: 14px; left: 18px; }
+            .bmplayer-container.bmplayer-style-4 .bmplayer-controls-primary i { font-size: 1.6em; }
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #4a148c; color: #ffffff; text-align: center;
+            padding: 1.5rem; font-size: 0.9rem;
+        }
+        footer a { color: #e1bee7; text-decoration: none; margin: 0 0.3rem; }
+        footer a:hover { text-decoration: underline; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .contenedor-principal { grid-template-columns: 1fr; }
+            .columna-lateral { border-left: none; border-top: 3px solid #6a1b9a; }
+        }
+
+        @media (max-width: 768px) {
+            /* Mostrar botón hamburguesa */
+            .btn-hamburguesa {
+                display: block;
+            }
+
+            /* Ocultar el menú por defecto */
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+
+            /* Mostrar el menú cuando está activo */
+            nav.activo {
+                display: flex;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                font-size: 0.9rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .columna-principal { padding: 1.2rem 1rem; }
+            .columna-principal h1.titulo-seccion { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header id="encabezado-principal">
+        <div class="logo-container">
+            <img src="Logo3.jpg" alt="Yoltlajtoli Radio 96.1 FM" />
+        </div>
+
+        <div class="barra-navegacion">
+            <button class="btn-hamburguesa" onclick="toggleMenu()" aria-label="Abrir menú de navegación">
+                <i class="fa fa-bars"></i> Menú
+            </button>
+
+            <nav id="menu-navegacion">
+                <a href="index.html">Inicio</a>
+                <a href="QuienesSomos.html" class="activo">¿Quienes somos?</a>
+                <a href="Servicios.html">Servicios</a>
+                <a href="Galeria.html">Galería</a>
+                <a href="Noticias.html">Noticias</a>
+                <a href="UbicacionContactos.html">Ubicación y Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BOTÓN FLOTANTE BMPLAYER -->
+    <div class="bmplayer-container bmplayer-style-4" id="bmplayer-flotante" title="Escuchar Yoltlajtoli Radio en vivo">
+      <div class="bmplayer-container-content">
+        <div class="bmplayer-controls-primary">
+          <i class="fa fa-play bmplayer-btn-play" id="icono-flotante" aria-label="Reproducir"></i>
+        </div>
+        <div class="bmplayer-controls-secondary">
+          <i class="fa fa-volume-up bmplayer-btn-vol" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedor-principal">
+
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a>
+            <span class="separador">/</span>
+            <span>Quienes somos</span>
+        </div>
+
+        <div class="columna-principal">
+            <h1 class="titulo-seccion">Quienes somos</h1>
+
+            <div class="contenido-texto">
+                <div class="imagen-pagina">
+                    <img src="fotopersonal.jpg" alt="Yoltlajtoli Radio" style="max-width:600px;" />
+                </div>
+
+                <p>En <strong>Yoltlajtoli Radio 96.1 FM</strong> somos una emisora comunitaria nacida en el corazón de <strong>Colatlán</strong>, en el municipio de Ixhuatlán de Madero, Veracruz.</p>
+                <p>Fieles al significado de nuestro nombre, que evoca la <em>«palabra del corazón»</em> en náhuatl, asumimos el compromiso de transmitir, respaldar y acompañar a los pueblos indígenas locales en la preservación y fortalecimiento de su identidad cultural y sus lenguas originarias.</p>
+                <p>A través de nuestra barra de programación, nos dedicamos a difundir la música, la cosmovisión y las tradiciones de las comunidades <strong>náhuatl, tepehua, otomí y totonaca</strong> que convivimos en este territorio, manteniendo viva la memoria colectiva y el orgullo de nuestras raíces.</p>
+                <p>Yoltlajtoli Radio se ha convertido en un espacio de encuentro donde las voces de la comunidad encuentran eco, donde las historias de nuestros abuelos y abuelas se preservan y donde las nuevas generaciones pueden conectar con su herencia cultural.</p>
+                <p>Nuestro compromiso es con la verdad, la justicia social y la defensa de los derechos de los pueblos indígenas. Creemos en el poder de la comunicación para transformar realidades y construir un futuro más justo y digno para todas y todos.</p>
+
+                <p style="font-size:1.2rem; color:#6a1b9a; text-align:center; font-weight:700; margin-top:1.5rem;">Siempre comunicados con el corazón</p>
+            </div>
+
+            <section class="seccion-equipo">
+                <h2>Nuestro equipo</h2>
+                <p class="subtitulo" style="text-align:center; color:#7b4b8a; margin-bottom:1rem;">Las voces detrás de Yoltlajtoli Radio</p>
+                <div class="tarjetas-equipo">
+                    <div class="tarjeta-persona">
+                        <div class="avatar">JM</div>
+                        <h4>Juan Martínez</h4>
+                        <p>Conductor · Programa matutino</p>
+                    </div>
+                    <div class="tarjeta-persona">
+                        <div class="avatar">AM</div>
+                        <h4>Agustin Martinez</h4>
+                        <p>Conductor · Programa en náhuatl</p>
+                    </div>
+                    <div class="tarjeta-persona">
+                        <div class="avatar">L</div>
+                        <h4>Leo</h4>
+                        <p>Producción y sonido</p>
+                    </div>
+                    <div class="tarjeta-persona">
+                        <div class="avatar">R</div>
+                        <h4>Rosario</h4>
+                        <p>Coordinación comunitaria</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside class="columna-lateral">
+            <div class="lateral-header">
+                <span class="label-seguir">Seguir:</span>
+                <div class="redes-inline">
+                    <a title="WhatsApp" class="icono-social whatsapp" href="https://wa.me/527297798515" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                    <a title="Facebook" class="icono-social facebook" href="https://www.facebook.com/p/Yoltlajtoli-Radio-961-Fm-100091626907860/" target="_blank" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a title="YouTube" class="icono-social youtube" href="https://www.youtube.com/@YoltlajtoliRadioRadionahua" target="_blank" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
+                </div>
+            </div>
+
+            <div class="lateral-caja">
+                <h4>Contáctanos</h4>
+                <div class="info-contacto">
+                    <strong>Teléfono de la cabina</strong>
+                    <a href="https://wa.me/527297798515" target="_blank" rel="noopener">729 779 8515</a>
+                </div>
+                 <div class="info-contacto">
+                    <strong>Correo electrónico</strong>
+                    <a href="mailto:yoltlajtoliradio96.1@gmail.com">yoltlajtoliradio96.1@gmail.com</a>
+                </div>
+
+                <div class="info-contacto">
+                    <strong>Ubicación</strong>
+                  Calle Vicente guerrero S/N  Barrio Abajo Colatlán, Ixhuatlán de Madero, Veracruz, México
+                </div>
+            </div>
+
+
+            <div class="lateral-facebook">
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v22.0"></script>
+                <div class="fb-page" data-href="https://www.facebook.com/p/Yoltlajtoli-Radio-961-Fm-100091626907860/" data-tabs="timeline" data-width="260" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>
+            &copy; 2026 Yoltlajtoli Radio 96.1 FM — Siempre comunicados con el corazón ·
+            <a href="#">Aviso de privacidad</a> ·
+            <a href="#">Términos de uso</a>
+        </p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:0.4rem;">
+            Colatlán, Ixhuatlán de Madero, Veracruz — Transmitiendo desde la Huasteca veracruzana
+        </p>
+    </footer>
+
+    <audio id="audio-radio" preload="none" crossorigin="anonymous">
+        <source src="http://yanapak.org:8000/YoltlajtoliRadio" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ============================================
+        //  MENÚ HAMBURGUESA (MÓVIL)
+        // ============================================
+        function toggleMenu() {
+            const menu = document.getElementById('menu-navegacion');
+            const boton = document.querySelector('.btn-hamburguesa');
+            menu.classList.toggle('activo');
+            
+            if (menu.classList.contains('activo')) {
+                boton.innerHTML = '<i class="fa fa-times"></i> Cerrar';
+            } else {
+                boton.innerHTML = '<i class="fa fa-bars"></i> Menú';
+            }
+        }
+
+        // Cerrar el menú al hacer clic en un enlace (en móvil)
+        document.querySelectorAll('#menu-navegacion a').forEach(enlace => {
+            enlace.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    const menu = document.getElementById('menu-navegacion');
+                    const boton = document.querySelector('.btn-hamburguesa');
+                    menu.classList.remove('activo');
+                    boton.innerHTML = '<i class="fa fa-bars"></i> Menú';
+                }
+            });
+        });
+
+        // ============================================
+        //  REPRODUCTOR
+        // ============================================
+        const audio = document.getElementById('audio-radio');
+        const iconoFlotante = document.getElementById('icono-flotante');
+        const btnFlotante = document.getElementById('bmplayer-flotante');
+        function actualizarInterfaz(r) {
+            if (r) { iconoFlotante.classList.remove('fa-play'); iconoFlotante.classList.add('fa-pause'); btnFlotante.title='Pausar'; }
+            else   { iconoFlotante.classList.remove('fa-pause'); iconoFlotante.classList.add('fa-play'); btnFlotante.title='Escuchar en vivo'; }
+        }
+        function alternarReproduccion() {
+            if (audio.paused) audio.play().catch(() => alert('No se pudo conectar al streaming.'));
+            else audio.pause();
+        }
+        document.querySelector('.bmplayer-btn-play').addEventListener('click', e => { e.stopPropagation(); alternarReproduccion(); });
+        document.querySelector('.bmplayer-btn-vol').addEventListener('click', function(e) {
+            e.stopPropagation(); audio.muted = !audio.muted;
+            this.classList.toggle('fa-volume-up'); this.classList.toggle('fa-volume-off');
+        });
+        audio.addEventListener('playing', () => actualizarInterfaz(true));
+        audio.addEventListener('pause', () => actualizarInterfaz(false));
+    </script>
+</body>
+</html>

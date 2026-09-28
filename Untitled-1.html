@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yoltlajtoli Radio 96.1 FM</title>
+
+    
+    <style>
+        /* ---------- RESETEO BÁSICO ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #2d1b3d;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- ENCABEZADO (MORADO) ---------- */
+        header {
+            background-color: #6a1b9a;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+         /* ---------- IMAGEN Mascara ---------- */
+         
+         .imagenmascara {
+            width: 120px;    /* ← cambia este valor */
+            height: auto;    /* ← o pon el alto que quieras */
+            border-radius: 12px; /* (opcional) para bordes redondeados */
+            display: block;
+            margin: 0 auto;      
+            border-color: purple;
+        
+        }
+        /* ---------- IMAGEN Huapango ---------- */
+         
+         .imagenhuapango {
+            width: 120px;    /* ← cambia este valor */
+            height: auto;    /* ← o pon el alto que quieras */
+            border-radius: 12px; /* (opcional) para bordes redondeados */
+            display: block;
+            margin: 0 auto;      
+            border-color: purple;
+        
+        }
+        /* ---------- IMAGEN Cascada ---------- */
+         
+         .imagencascada {
+            width: 120px;    /* ← cambia este valor */
+            height: auto;    /* ← o pon el alto que quieras */
+            border-radius: 12px; /* (opcional) para bordes redondeados */
+            display: block;
+            margin: 0 auto;      
+            border-color: purple;
+        
+        }
+
+        /* ---------- IMAGEN CENTRADA ---------- */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.5rem 0 0.5rem 0;
+        }
+
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 3px solid #6a1b9a;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- NAVEGACIÓN (centrada) ---------- */
+        nav {
+            margin-top: 0.75rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ---------- CONTENIDO PRINCIPAL ---------- */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        main h2 {
+            color: #6a1b9a;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        main .subtitulo {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #3e2a4a;
+        }
+
+        /* ============================================ */
+        /*  NUEVA SECCIÓN: TEXTO + IMAGEN (ANTES DE LOS RECUADROS) */
+        /* ============================================ */
+        .seccion-destacada {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 50% texto, 50% imagen */
+            gap: 2.5rem;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f0fc 0%, #ffffff 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 2px solid #e1bee7;
+            box-shadow: 0 4px 16px rgba(106, 27, 154, 0.08);
+        }
+
+        .seccion-destacada .texto h3 {
+            color: #6a1b9a;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .seccion-destacada .texto p {
+            color: #3e2a4a;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .seccion-destacada .texto ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .seccion-destacada .texto ul li {
+            padding: 0.4rem 0;
+            color: #3e2a4a;
+        }
+
+        .seccion-destacada .texto ul li::before {
+            content: "💜 ";
+            color: #6a1b9a;
+            font-weight: bold;
+        }
+
+        .seccion-destacada .imagen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .seccion-destacada .imagen img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(106, 27, 154, 0.15);
+            border: 3px solid #6a1b9a;
+            transition: transform 0.3s ease;
+        }
+
+        .seccion-destacada .imagen img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Placeholder de imagen (si no tienes imagen) */
+        .placeholder-imagen {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 6px 24px rgba(106, 27, 154, 0.2);
+        }
+
+        /* ---------- RECUADROS (3 COLUMNAS) ---------- */
+        .recuadros {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .recuadro {
+            background-color: #f8f0fc;
+            border: 2px solid #6a1b9a;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            min-height: 200px;
+            box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recuadro:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.2);
+        }
+
+        .recuadro h3 {
+            color: #6a1b9a;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 0.5rem;
+        }
+
+        .recuadro p {
+            color: #3e2a4a;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .recuadro .placeholder {
+            color: #9c7aa8;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- ESPACIO PARA FUTURAS SECCIONES ---------- */
+        .futuro-contenido {
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 2px dashed #e1bee7;
+            text-align: center;
+            color: #7b4b8a;
+        }
+
+        .futuro-contenido p {
+            font-style: italic;
+        }
+
+        /* ---------- PIE DE PÁGINA ---------- */
+        footer {
+            background-color: #4a148c;
+            color: #ffffff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #e1bee7;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* ============================================ */
+/*  ESTILOS DEL CARRUSEL                        */
+/* ============================================ */
+.carrusel-container {
+    max-width: 1000px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(106, 27, 154, 0.15);
+    border: 3px solid #e1bee7;
+}
+
+.carrusel {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background-color: #6a1b9a;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Las imágenes se ajustan sin deformarse */
+    display: block;
+}
+
+/* Botones de navegación */
+.btn-anterior,
+.btn-siguiente {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(106, 27, 154, 0.7);
+    color: white;
+    border: none;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.btn-anterior:hover,
+.btn-siguiente:hover {
+    background: #6a1b9a;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 16px rgba(106, 27, 154, 0.4);
+}
+
+.btn-anterior {
+    left: 20px;
+}
+
+.btn-siguiente {
+    right: 20px;
+}
+
+/* Indicadores (puntitos) */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 0;
+    background: linear-gradient(135deg, #f8f0fc, #ffffff);
+    border-top: 2px solid #e1bee7;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d1b3d8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.dot:hover {
+    transform: scale(1.2);
+    background: #9c27b0;
+}
+
+.dot.active {
+    background: #6a1b9a;
+    border-color: #6a1b9a;
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(106, 27, 154, 0.4);
+}
+
+/* ============================================ */
+/*  RESPONSIVE PARA CARRUSEL                    */
+/* ============================================ */
+@media (max-width: 768px) {
+    .carrusel {
+        height: 280px;
+    }
+
+    .btn-anterior,
+    .btn-siguiente {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        padding: 8px 12px;
+    }
+
+    .btn-anterior {
+        left: 10px;
+    }
+
+    .btn-siguiente {
+        right: 10px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .indicadores {
+        gap: 8px;
+        padding: 12px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .carrusel {
+        height: 200px;
+    }
+
+    .btn-anterior,
+    .btn-siguiente {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .seccion-destacada {
+                grid-template-columns: 1fr; /* Una columna en móvil */
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .seccion-destacada .texto {
+                order: 2; /* El texto va abajo en móvil */
+            }
+
+            .seccion-destacada .imagen {
+                order: 1; /* La imagen va arriba en móvil */
+            }
+
+            .recuadros {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo-container img {
+                max-width: 120px;
+            }
+
+            nav {
+                gap: 0.8rem;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            .recuadro {
+                min-height: 150px;
+                padding: 1.5rem;
+            }
+
+            .placeholder-imagen {
+                height: 180px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .recuadros {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================ -->
+    <!--  ENCABEZADO (Morado con todo centrado)       -->
+    <!-- ============================================ -->
+    <header>
+       <h1>¡Bienvenido!</h1>
+
+        <!-- IMAGEN CENTRADA -->
+        <div class="logo-container">
+            <img src="Logo2.jpg" alt="Logo del proyecto" />
+        </div>
+
+        <!-- Barra de navegación (centrada) -->
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Noticias</a>
+            <a href="#">Acerca de Yoltlajtoli</a>
+            <a href="#">Contactos</a>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!--  CONTENIDO PRINCIPAL                         -->
+    <!-- ============================================ -->
+    <main>
+        <!-- ========================================== -->
+<!--  CARRUSEL DE 5 IMÁGENES (3 segundos)      -->
+<!-- ========================================== -->
+<section class="carrusel-container">
+    <div class="carrusel">
+        <!-- Slides -->
+        <div class="slide active">
+            <img src="slide1.jpg" alt="Imagen 1">
+        </div>
+        <div class="slide">
+            <img src="slide2.jpg" alt="Imagen 2">
+        </div>
+        <div class="slide">
+            <img src="slide3.jpg" alt="Imagen 3">
+        </div>
+        <div class="slide">
+            <img src="slide4.jpg" alt="Imagen 4">
+        </div>
+        <div class="slide">
+            <img src="slide5.jpg" alt="Imagen 5">
+        </div>
+
+        
+        <button class="btn-anterior" onclick="slideAnterior()">❮</button>
+        <button class="btn-siguiente" onclick="slideSiguiente()">❯</button>
+    </div>
+
+    
+    <div class="indicadores">
+        <span class="dot active" onclick="slideActual(0)"></span>
+        <span class="dot" onclick="slideActual(1)"></span>
+        <span class="dot" onclick="slideActual(2)"></span>
+        <span class="dot" onclick="slideActual(3)"></span>
+        <span class="dot" onclick="slideActual(4)"></span>
+    </div>
+</section>
+
+        
+        <section class="seccion-destacada">
+            <div class="texto">
+                <h3>¿Quienes Somos?</h3>
+                <p>En Yoltlajtoli Radio 96.1 FM somos una emisora comunitaria nacida en el corazón de Colatlán, en el municipio de Ixhuatlán de Madero, Veracruz.
+                    Fieles al significado de nuestro nombre —que evoca la «palabra del corazón» en náhuatl—, asumimos el compromiso de transmitir, respaldar y 
+                    acompañar a los pueblos indígenas locales en la preservación y fortalecimiento de su identidad cultural y sus lenguas originarias. A través 
+                    de nuestra barra de programación, nos dedicamos a difundir la música, la cosmovisión y las tradiciones de las comunidades náhuatl, tepehua,
+                     otomí y totonaca que convivimos en este territorio, manteniendo viva la memoria colectiva y el orgullo de nuestras raíces.
+
+                </p>
+                <h2>Conoce mas de Nuestra Comunidad</h2>
+                <ul>
+                    <a href="">Historia</a><br>
+                    <a href="">Costumbres</a><br>
+                    <a href="">Tradiciones</a><br>
+                    <a href="">Eventos</a>
+
+                    
+                </ul>
+                <p style="font-style: italic; color: #7b4b8a;">
+                    Siempre Comunicados con el Corazón💜🎙️.
+                </p>
+            </div>
+
+            <!-- Columna de IMAGEN -->
+            <div class="imagen">
+                <!-- CAMBIA esta línea por tu imagen real -->
+                <img src="fotopersonal.jpg" alt="Imagen de presentación" />
+                
+                <!-- O si prefieres usar una imagen local:
+                <img src="D:\ruta\de\tu\imagen.jpg" alt="Descripción" />
+                -->
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!--  TRES RECUADROS (Izquierda, Centro, Derecha) -->
+        <!-- ========================================== -->
+        <section class="recuadros">
+            <!-- Recuadro 1: Izquierda -->
+            <div class="recuadro">
+                <h3>¿Sabias que?</h3>
+               <!-- <p class="placeholder">
+                    Aquí puedes escribir tu primer texto. 
+                    Describe tu servicio, historia o cualquier información importante.
+                </p>-->
+                <p>Colatlán es reconocido en la Huasteca veracruzana por la elaboración artesanal de 
+                    las máscaras de madera para el Carnaval y por su arraigada tradición en la talabartería.</p>
+                    <img class="imagenmascara" src="mascara.png" alt="Imagen representativa">
+                <!--<img src="colatlan.jpg" alt="">-->
+            </div>
+
+            <!-- Recuadro 2: Centro -->
+            <div class="recuadro">
+                <h3>La Cascada del Huapango</h3>
+                <p>la Expo Feria de Colatlán (celebrada a finales de diciembre) se conoce 
+                    tradicionalmente como La Cascada del Huapango.</p>
+                <img class="imagenhuapango" src="huapango.png" alt="Imagen representativa">
+            </div>
+
+            <!-- Recuadro 3: Derecha -->
+            <div class="recuadro">
+                <h3>Las 3 Cascadas</h3>
+                <p> una impresionante caída de agua rodeada de abundante vegetación, 
+                    un rincón fresco que se ha convertido en el punto de encuentro preferido por locales y visitantes.</p>
+                     <img class="imagencascada" src="cascada.jpg" alt="Imagen representativa">
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!--  ESPACIO PARA FUTURAS SECCIONES            -->
+        <!-- ========================================== -->
+        <div class="futuro-contenido">
+            <p>⬇️ <strong>Más contenido abajo</strong> ⬇️</p>
+            <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                Aquí irán otras secciones (carrusel, formulario, equipo, etc.)
+            </p>
+        </div>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!--  PIE DE PÁGINA                               -->
+    <!-- ============================================ -->
+    <footer>
+        <p>
+            &copy; 2026 — Hecho con 💜 para tu proyecto · 
+            <a href="#">Aviso de privacidad</a>
+        </p>
+    </footer>
+
+    <!-- ============================================ -->
+<!--  JAVASCRIPT DEL CARRUSEL                     -->
+<!-- ============================================ -->
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let intervalo;
+
+    // Función para mostrar un slide específico
+    function mostrarSlide(index) {
+        // Quitar clase active de todos los slides y dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        // Asegurar que el índice esté dentro del rango
+        if (index >= slides.length) slideIndex = 0;
+        if (index < 0) slideIndex = slides.length - 1;
+
+        // Agregar clase active al slide y dot actual
+        slides[slideIndex].classList.add('active');
+        dots[slideIndex].classList.add('active');
+    }
+
+    // Función para ir al siguiente slide
+    function slideSiguiente() {
+        slideIndex++;
+        mostrarSlide(slideIndex);
+        reiniciarIntervalo();
+    }
+
+    // Función para ir al slide anterior
+    function slideAnterior() {
+        slideIndex--;
+        mostrarSlide(slideIndex);
+        reiniciarIntervalo();
+    }
+
+    // Función para ir a un slide específico (por puntito)
+    function slideActual(index) {
+        slideIndex = index;
+        mostrarSlide(slideIndex);
+        reiniciarIntervalo();
+    }
+
+    // Función para cambiar automáticamente cada 3 segundos
+    function cambiarSlide() {
+        slideIndex++;
+        mostrarSlide(slideIndex);
+    }
+
+    // Función para reiniciar el intervalo automático
+    function reiniciarIntervalo() {
+        clearInterval(intervalo);
+        intervalo = setInterval(cambiarSlide, 3000); // 3000ms = 3 segundos
+    }
+
+    // Iniciar el carrusel automático
+    intervalo = setInterval(cambiarSlide, 3000);
+
+    // Pausar el carrusel cuando el mouse está encima
+    const carruselContainer = document.querySelector('.carrusel-container');
+    carruselContainer.addEventListener('mouseenter', () => {
+        clearInterval(intervalo);
+    });
+
+    carruselContainer.addEventListener('mouseleave', () => {
+        intervalo = setInterval(cambiarSlide, 3000);
+    });
+
+    // También pausar en dispositivos táctiles (celulares)
+    carruselContainer.addEventListener('touchstart', () => {
+        clearInterval(intervalo);
+    });
+
+    carruselContainer.addEventListener('touchend', () => {
+        intervalo = setInterval(cambiarSlide, 3000);
+    });
+</script>
+
+
+</body>
+</html>
